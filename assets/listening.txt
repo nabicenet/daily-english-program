@@ -1,0 +1,9 @@
+Yesterday, the analyst team tested MR Studio more thoroughly. They found several bugs during the tests, but they didn't report all of them immediately.
+
+Today, they are telling us about the problems they found. Some of the bugs are related to report parameters, and others affect the data displayed on the screen.
+
+I have already fixed two of the issues, but there are still a few bugs that I need to investigate. I will fix the remaining bugs as soon as possible.
+
+Before we deploy the new version, I want the analysts to test the application again. If they don't find any critical issues, we can continue with the deployment.
+
+The important thing is to understand why these bugs were not reported earlier. In future tests, I want the team to report problems as soon as they find them.
