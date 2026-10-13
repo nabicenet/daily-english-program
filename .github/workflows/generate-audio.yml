@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "assets/listening.txt"
+      - "assets/audio-manifest.json"
       - "scripts/generate_audio.py"
       - ".github/workflows/generate-audio.yml"
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/audio-build-log.txt
-          if [ -f assets/listening.mp3 ]; then git add assets/listening.mp3; fi
+          if [ -d assets/audio ]; then git add assets/audio; fi
           if ! git diff --cached --quiet; then
             git commit -m "Record Piper audio generation result"
             git push
