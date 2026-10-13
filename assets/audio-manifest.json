@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "lesson": "2026-09-21",
+  "voice": "en_US-lessac-medium",
+  "items": [
+    {
+      "id": "listening-full",
+      "section": "listening",
+      "selector": "#passage",
+      "text": "Yesterday, the analyst team tested MR Studio more thoroughly. They found several bugs during the tests, but they didn't report all of them immediately. Today, they are telling us about the problems they found. Some of the bugs are related to report parameters, and others affect the data displayed on the screen. I have already fixed two of the issues, but there are still a few bugs that I need to investigate. I will fix the remaining bugs as soon as possible. Before we deploy the new version, I want the analysts to test the application again. If they don't find any critical issues, we can continue with the deployment. The important thing is to understand why these bugs were not reported earlier. In future tests, I want the team to report problems as soon as they find them."
+    },
+    {
+      "id": "listening-p1",
+      "section": "listening",
+      "selector": "#passage p:nth-child(1)",
+      "text": "Yesterday, the analyst team tested MR Studio more thoroughly. They found several bugs during the tests, but they didn't report all of them immediately."
+    },
+    {
+      "id": "listening-p2",
+      "section": "listening",
+      "selector": "#passage p:nth-child(2)",
+      "text": "Today, they are telling us about the problems they found. Some of the bugs are related to report parameters, and others affect the data displayed on the screen."
+    },
+    {
+      "id": "listening-p3",
+      "section": "listening",
+      "selector": "#passage p:nth-child(3)",
+      "text": "I have already fixed two of the issues, but there are still a few bugs that I need to investigate. I will fix the remaining bugs as soon as possible."
+    },
+    {
+      "id": "listening-p4",
+      "section": "listening",
+      "selector": "#passage p:nth-child(4)",
+      "text": "Before we deploy the new version, I want the analysts to test the application again. If they don't find any critical issues, we can continue with the deployment."
+    },
+    {
+      "id": "listening-p5",
+      "section": "listening",
+      "selector": "#passage p:nth-child(5)",
+      "text": "The important thing is to understand why these bugs were not reported earlier. In future tests, I want the team to report problems as soon as they find them."
+    },
+    {
+      "id": "shadow-01",
+      "section": "shadowing",
+      "selector": "#shadowing ol li:nth-child(1)",
+      "text": "The analysts tested MR Studio and found several bugs."
+    },
+    {
+      "id": "shadow-02",
+      "section": "shadowing",
+      "selector": "#shadowing ol li:nth-child(2)",
+      "text": "They found the bugs earlier, but they are only telling us about them now."
+    },
+    {
+      "id": "shadow-03",
+      "section": "shadowing",
+      "selector": "#shadowing ol li:nth-child(3)",
+      "text": "I have already fixed two of the issues."
+    },
+    {
+      "id": "shadow-04",
+      "section": "shadowing",
+      "selector": "#shadowing ol li:nth-child(4)",
+      "text": "I still need to investigate the remaining bugs."
+    },
+    {
+      "id": "shadow-05",
+      "section": "shadowing",
+      "selector": "#shadowing ol li:nth-child(5)",
+      "text": "I will fix the remaining bugs as soon as possible."
+    },
+    {
+      "id": "shadow-06",
+      "section": "shadowing",
+      "selector": "#shadowing ol li:nth-child(6)",
+      "text": "After I fix them, the analysts will test the application again."
+    },
+    {
+      "id": "shadow-challenge",
+      "section": "shadowing",
+      "selector": "#shadowing .reading",
+      "text": "The analysts tested MR Studio more thoroughly and found several bugs, but they didn't report them immediately, so I need to investigate and fix the remaining issues before deployment."
+    },
+    {
+      "id": "vocab-01",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(1)",
+      "text": "The analysts tested the application thoroughly."
+    },
+    {
+      "id": "vocab-02",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(2)",
+      "text": "They didn't report the issue immediately."
+    },
+    {
+      "id": "vocab-03",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(3)",
+      "text": "I need to investigate this bug before I can fix it."
+    },
+    {
+      "id": "vocab-04",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(4)",
+      "text": "I will fix the remaining bugs tomorrow."
+    },
+    {
+      "id": "vocab-05",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(5)",
+      "text": "We shouldn't deploy the new version before testing it."
+    },
+    {
+      "id": "vocab-06",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(6)",
+      "text": "The analysts didn't find any critical issues."
+    },
+    {
+      "id": "vocab-07",
+      "section": "vocabulary",
+      "selector": "#vocabulary .card:nth-child(7)",
+      "text": "I will fix the remaining bugs as soon as possible."
+    },
+    {
+      "id": "speaking-prompt",
+      "section": "speaking",
+      "selector": "#speaking > p:first-of-type",
+      "text": "What is the current status of the MR Studio testing?"
+    },
+    {
+      "id": "review-model",
+      "section": "review",
+      "selector": ".target .reading",
+      "text": "The analysts tested MR Studio more thoroughly and found several bugs. They found some of them earlier, but they are only telling us about them now. I have already fixed two issues, and I am investigating the remaining ones. I will fix them as soon as possible. After I fix the bugs, the analysts will test the application again."
+    }
+  ]
+}
