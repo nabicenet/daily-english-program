@@ -1,0 +1,38 @@
+name: Generate free AI lesson audio
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/listening.txt"
+      - "scripts/generate_audio.py"
+      - ".github/workflows/generate-audio.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  generate-audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Piper
+        run: pip install piper-tts
+      - name: Download free Piper voice
+        run: |
+          mkdir -p models
+          curl -fL --retry 3 -o models/en_US-lessac-medium.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
+          curl -fL --retry 3 -o models/en_US-lessac-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
+      - name: Generate the MP3 once
+        run: python scripts/generate_audio.py
+      - name: Commit audio for fast Safari playback
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/listening.mp3
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate Piper English listening MP3"
+            git push
+          fi
