@@ -1,26 +1,34 @@
-"""Generate one cached English lesson MP3 using open-source Piper TTS."""
+"""Produce one MP3 in CI; Safari only downloads the final small audio file."""
 from pathlib import Path
 import subprocess
 import tempfile
 
 root = Path(__file__).resolve().parents[1]
-text_path = root / "assets" / "listening.txt"
-model_path = root / "models" / "en_US-lessac-medium.onnx"
-output = root / "assets" / "listening.mp3"
-paragraphs = [p.strip() for p in text_path.read_text(encoding="utf-8").split("\n\n") if p.strip()]
-if not paragraphs:
-    raise SystemExit("Lesson text is empty")
-with tempfile.TemporaryDirectory() as temporary:
-    tmp = Path(temporary)
-    wavs = []
-    for index, paragraph in enumerate(paragraphs):
-        wav = tmp / f"part-{index:02d}.wav"
-        subprocess.run(["piper", "--model", str(model_path), "--output_file", str(wav)],
-                       input=paragraph + "\n", text=True, check=True)
-        wavs.append(wav)
-    concat = tmp / "concat.txt"
-    concat.write_text("".join(f"file '{wav.as_posix()}'\n" for wav in wavs))
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
-                    "-i", str(concat), "-codec:a", "libmp3lame", "-q:a", "3",
-                    str(output)], check=True)
-print(f"Created {output} ({output.stat().st_size} bytes)")
+text_path = root / "assets/listening.txt"
+model = root / "models/en_US-lessac-medium.onnx"
+config = root / "models/en_US-lessac-medium.onnx.json"
+output = root / "assets/listening.mp3"
+text = text_path.read_text(encoding="utf-8").strip()
+if not text:
+    raise SystemExit("Listening text is empty")
+for path in (model, config):
+    if not path.is_file() or path.stat().st_size < 1000:
+        raise SystemExit(f"Missing/invalid model file: {path}")
+with tempfile.TemporaryDirectory() as directory:
+    wav = Path(directory) / "lesson.wav"
+    print("Synthesizing AI speech...", flush=True)
+    subprocess.run(
+        ["piper", "--model", str(model), "--config", str(config), "--output_file", str(wav)],
+        input=text + "\n", text=True, check=True,
+    )
+    if not wav.exists() or wav.stat().st_size < 1000:
+        raise SystemExit("Piper did not produce a valid WAV")
+    print(f"WAV created: {wav.stat().st_size} bytes", flush=True)
+    subprocess.run(
+        ["ffmpeg", "-y", "-hide_banner", "-loglevel", "warning", "-i", str(wav),
+         "-codec:a", "libmp3lame", "-q:a", "3", str(output)],
+        check=True,
+    )
+if not output.exists() or output.stat().st_size < 1000:
+    raise SystemExit("MP3 was not generated")
+print(f"Created MP3: {output.stat().st_size} bytes", flush=True)
