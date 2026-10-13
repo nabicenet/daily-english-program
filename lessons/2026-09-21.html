@@ -126,7 +126,7 @@ const b=document.createElement("button");b.type="button";b.className="audio-inli
 }
 async function setup(){
 try{
-const response=await fetch(repoBase+"assets/audio-manifest.json",{cache:"no-cache"});
+const response=await fetch(repoBase+"assets/audio/2026-09-21/manifest.json",{cache:"no-cache"});
 if(!response.ok)throw Error("Manifest missing");
 const manifest=await response.json();document.body.dataset.lesson=manifest.lesson;items=manifest.items;
 items.forEach(item=>{
