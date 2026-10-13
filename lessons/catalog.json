@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "current": "2026-09-21",
+  "lessons": [
+    {
+      "date": "2026-09-21",
+      "displayDate": "21 September 2026",
+      "title": "Reporting Bugs and Test Results in MR Studio",
+      "level": "B1",
+      "duration": "30–35 min",
+      "status": "in-progress",
+      "url": "lessons/2026-09-21.html",
+      "description": "Bug reporting, test results, deployment readiness and project status updates."
+    }
+  ]
+}
