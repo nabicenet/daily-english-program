@@ -25,14 +25,28 @@ jobs:
           mkdir -p models
           curl -fL --retry 3 -o models/en_US-lessac-medium.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
           curl -fL --retry 3 -o models/en_US-lessac-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
-      - name: Generate the MP3 once
-        run: python scripts/generate_audio.py
-      - name: Commit audio for fast Safari playback
+      - name: Generate MP3 and capture diagnostic details
+        id: synth
+        shell: bash
+        run: |
+          set +e
+          python scripts/generate_audio.py > assets/audio-build-log.txt 2>&1
+          code=$?
+          cat assets/audio-build-log.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Commit generated MP3 or failure log
+        if: always()
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/listening.mp3
+          git add assets/audio-build-log.txt
+          if [ -f assets/listening.mp3 ]; then git add assets/listening.mp3; fi
           if ! git diff --cached --quiet; then
-            git commit -m "Generate Piper English listening MP3"
+            git commit -m "Record Piper audio generation result"
             git push
           fi
+      - name: Fail if audio generation failed
+        if: steps.synth.outputs.exit_code != '0'
+        run: exit 1
