@@ -50,7 +50,8 @@ jobs:
           if [ -d assets/audio ]; then git add assets/audio; fi
           if ! git diff --cached --quiet; then
             git commit -m "Record Piper audio generation result"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
       - name: Fail if audio generation failed
         if: steps.synth.outputs.exit_code != '0'
