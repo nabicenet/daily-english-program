@@ -25,6 +25,11 @@ jobs:
           mkdir -p models
           curl -fL --retry 3 -o models/en_US-lessac-medium.onnx "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx"
           curl -fL --retry 3 -o models/en_US-lessac-medium.onnx.json "https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json"
+      - name: Install FFmpeg for WAV to MP3 conversion
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -n 1
       - name: Generate MP3 and capture diagnostic details
         id: synth
         shell: bash
